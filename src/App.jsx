@@ -15,7 +15,6 @@ import QuizScreen from './components/QuizScreen.jsx'
 import ResultsScreen from './components/ResultsScreen.jsx'
 import TopicPicker from './components/TopicPicker.jsx'
 
-const MIXED_TOPIC = 'All topics (mixed)'
 const QUESTION_COUNT = 10
 
 function isQuestionBank(value) {

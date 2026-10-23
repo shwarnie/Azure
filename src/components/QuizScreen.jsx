@@ -15,12 +15,13 @@ function QuizScreen({
   useEffect(() => {
     const handleKeyDown = (event) => {
       const target = event.target
-      const isEditing =
+      const isNativeActionTarget =
         target instanceof HTMLElement &&
-        target.matches('input, textarea, select, [contenteditable="true"]')
-      if (isEditing) return
+        target.closest(
+          'button:not(:disabled), a, summary, input, textarea, select, [contenteditable="true"]',
+        )
 
-      if (feedback && event.key === 'Enter') {
+      if (feedback && event.key === 'Enter' && !isNativeActionTarget) {
         event.preventDefault()
         onNext()
       } else if (!feedback && /^[1-4]$/.test(event.key)) {
