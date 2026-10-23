@@ -207,14 +207,28 @@ function App() {
             goHome()
           }}
         >
-          <span className="wordmark-icon" aria-hidden="true">
-            C
+          <span className="wordmark-symbol" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <path d="M20 3.5 36 12.75v14.5L20 36.5 4 27.25v-14.5L20 3.5Z" />
+              <path d="m12 20 5 5 11-12" />
+            </svg>
           </span>
-          <span>CloudReady</span>
+          <span className="wordmark-name">AZORA</span>
         </a>
+        {!loading && !loadError && screen === 'home' && (
+          <>
+            <nav className="main-navigation" aria-label="Main navigation">
+              <a href="#topics">Learn</a>
+              <a href="#features">Features</a>
+            </nav>
+            <a className="button button-primary header-cta" href="#topics">
+              Start learning <span aria-hidden="true">↗</span>
+            </a>
+          </>
+        )}
         {!loading && !loadError && screen !== 'home' && (
           <button className="text-button" type="button" onClick={goHome}>
-            <span aria-hidden="true">←</span> Home
+            <span aria-hidden="true">←</span> Dashboard
           </button>
         )}
       </header>
