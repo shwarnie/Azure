@@ -1,0 +1,632 @@
+[
+  {
+    "id": "cc-001",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Public, private, and hybrid cloud",
+    "difficulty": "easy",
+    "question": "A Kigali school wants to use computing services over the internet without buying and maintaining its own servers. Which cloud model best fits this plan?",
+    "options": [
+      "A private cloud used only by the school",
+      "A public cloud where a provider offers services to many customers",
+      "A hybrid cloud that must keep every service on the school's premises",
+      "A local network that does not use a cloud provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "A public cloud provider offers computing services to many customers over the internet. The school can use those services without owning the provider's datacenters.",
+    "whyOthersWrong": [
+      "A private cloud is dedicated to one organization, which is not what the scenario describes.",
+      null,
+      "A hybrid cloud combines public cloud services with private infrastructure. It does not require every service to stay on the school's premises.",
+      "A local network alone does not provide services from a cloud provider."
+    ]
+  },
+  {
+    "id": "cc-002",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Consumption-based model",
+    "difficulty": "easy",
+    "question": "A Lagos online shop has more visitors during a holiday sale. It wants its cloud bill to reflect the resources it actually uses. Which pricing approach best matches this goal?",
+    "options": [
+      "Pay a fixed amount for the largest possible capacity every month",
+      "Buy physical servers before each sale",
+      "Pay based on the cloud resources it consumes",
+      "Pay only when customers complete a purchase"
+    ],
+    "correctIndex": 2,
+    "explanation": "With a consumption-based model, the shop is charged for the cloud resources it uses. The bill is not automatically based on its sales revenue.",
+    "whyOthersWrong": [
+      "A fixed charge for maximum capacity does not make the bill reflect actual resource use.",
+      "Buying physical servers is not a consumption-based cloud pricing approach.",
+      null,
+      "Cloud resource charges are not tied to whether a customer completes a purchase."
+    ]
+  },
+  {
+    "id": "cc-003",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Shared responsibility model",
+    "difficulty": "medium",
+    "question": "A Nairobi fintech stores customer records in a cloud service. Under the shared responsibility model, who remains responsible for deciding how to classify and protect the company's data?",
+    "options": [
+      "The cloud provider, because it owns the datacenter where the data is stored",
+      "The cloud provider, but only when the company uses a SaaS service",
+      "The company and the provider share this equally for every type of cloud service",
+      "The company, because customers always retain responsibility for their data"
+    ],
+    "correctIndex": 3,
+    "explanation": "Responsibility for data always stays with the customer, whether the service is on-premises, IaaS, PaaS or SaaS. The provider takes on more of the other responsibilities as you move toward SaaS.",
+    "whyOthersWrong": [
+      "Owning the datacenter makes the provider responsible for physical security, not for how the customer classifies and protects its data.",
+      "Even with SaaS, the customer remains responsible for its data. Only some other responsibilities shift to the provider.",
+      "Some responsibilities vary by service type, but responsibility for data always stays with the customer.",
+      null
+    ]
+  },
+  {
+    "id": "cc-004",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "IaaS, PaaS, and SaaS",
+    "difficulty": "medium",
+    "question": "A small retailer wants to use an online email application. It does not want to install or maintain the application on its own servers. Which cloud service type should it choose?",
+    "options": [
+      "Software as a service (SaaS)",
+      "Platform as a service (PaaS)",
+      "Infrastructure as a service (IaaS)",
+      "Installing the email software on its own servers"
+    ],
+    "correctIndex": 0,
+    "explanation": "SaaS provides a ready-to-use application over the internet. The provider manages the application, so the retailer does not need to install it on its own servers.",
+    "whyOthersWrong": [
+      null,
+      "PaaS gives developers a platform to build and deploy applications. It is not meant for simply using hosted email.",
+      "IaaS provides virtualized infrastructure, but the retailer would still have to install and manage the email software.",
+      "This is the opposite of what the retailer wants, since it does not want to maintain the application itself."
+    ]
+  },
+  {
+    "id": "cc-005",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "High availability and scalability",
+    "difficulty": "medium",
+    "question": "A Cape Town retailer's website must keep serving shoppers if one server becomes unavailable. The retailer also wants to add capacity when visitor numbers grow. Which pairing best describes these goals?",
+    "options": [
+      "Scalability keeps the site accessible during a failure; high availability adds capacity",
+      "High availability keeps the site accessible during a failure; scalability lets capacity increase",
+      "Both goals can only be met by moving to a private cloud",
+      "Both goals describe the consumption-based pricing model"
+    ],
+    "correctIndex": 1,
+    "explanation": "High availability is about keeping a service accessible, while scalability is the ability to increase capacity to meet demand.",
+    "whyOthersWrong": [
+      "The terms are reversed. High availability is about staying accessible, and scalability is about adjusting capacity.",
+      null,
+      "Neither goal requires a private cloud, and public cloud services can provide both.",
+      "Consumption-based pricing is about paying for what you use. It is not the name of either goal."
+    ]
+  },
+  {
+    "id": "cc-006",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "CapEx and OpEx",
+    "difficulty": "easy",
+    "question": "A startup in Accra wants to avoid a large upfront purchase of servers and instead pay for computing services as it uses them. What type of spending does this represent?",
+    "options": [
+      "Operational expenditure (OpEx)",
+      "Capital expenditure (CapEx)",
+      "Depreciation of owned servers",
+      "A one-time upfront licence purchase"
+    ],
+    "correctIndex": 0,
+    "explanation": "OpEx is spending on services as you use them, with no large upfront investment in physical infrastructure. CapEx is upfront spending on physical assets such as servers.",
+    "whyOthersWrong": [
+      null,
+      "CapEx is the upfront purchase of physical infrastructure, which is exactly what the startup wants to avoid.",
+      "Depreciation applies to assets the company owns, such as servers it would buy itself.",
+      "A one-time upfront purchase is the opposite of paying as services are used."
+    ]
+  },
+  {
+    "id": "cc-007",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Public, private, and hybrid cloud",
+    "difficulty": "easy",
+    "question": "A Cape Town bank keeps its most sensitive customer records in its own datacenter but runs its public website on a cloud provider's services. Which cloud model is the bank using?",
+    "options": [
+      "Public cloud only",
+      "Private cloud only",
+      "Hybrid cloud",
+      "A traditional on-premises setup only"
+    ],
+    "correctIndex": 2,
+    "explanation": "A hybrid cloud combines private infrastructure with public cloud services, which matches keeping sensitive records in-house while using a provider for the website.",
+    "whyOthersWrong": [
+      "The bank also keeps its own datacenter, so it is not using only public cloud services.",
+      "The website runs on a provider's services, so the bank is not using only its own private infrastructure.",
+      null,
+      "The bank also uses a cloud provider, so it is not purely on-premises."
+    ]
+  },
+  {
+    "id": "cc-008",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "High availability and scalability",
+    "difficulty": "medium",
+    "question": "A Lagos online shop's virtual machine runs out of memory during sales. The team fixes this by moving the app to a larger VM size with more CPU and memory. Which approach is this?",
+    "options": [
+      "Horizontal scaling, by adding more VM instances",
+      "Disaster recovery, by copying the VM to another region",
+      "Scaling in, by removing instances when demand falls",
+      "Vertical scaling, by increasing the resources of an existing VM"
+    ],
+    "correctIndex": 3,
+    "explanation": "Vertical scaling adds resources such as CPU or memory to an existing machine. Horizontal scaling adds more instances instead.",
+    "whyOthersWrong": [
+      "Horizontal scaling would add more VM instances, but the team made one VM larger.",
+      "Disaster recovery protects against failures. It does not add memory or CPU to handle load.",
+      "Scaling in reduces the number of instances, which does not solve a memory shortage.",
+      null
+    ]
+  },
+  {
+    "id": "cc-009",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Shared responsibility model",
+    "difficulty": "hard",
+    "question": "A Nairobi company runs its web app on virtual machines that it manages itself (IaaS). It moves the app to a PaaS offering such as Azure App Service. Which responsibility moves from the company to the cloud provider?",
+    "options": [
+      "Managing and patching the underlying operating system",
+      "Deciding who in the company can view customer data",
+      "Classifying the company's data by sensitivity",
+      "Providing physical security for the datacenter that hosts the servers"
+    ],
+    "correctIndex": 0,
+    "explanation": "With IaaS the customer manages the operating system, but with PaaS the provider does. Data and access decisions stay with the customer, and physical datacenter security belongs to the provider in every model.",
+    "whyOthersWrong": [
+      null,
+      "Deciding who can access company data stays with the customer in every service type.",
+      "Data classification always remains the customer's responsibility.",
+      "The provider already handles physical security in IaaS, so nothing changes here when moving to PaaS."
+    ]
+  },
+  {
+    "id": "cc-010",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "CapEx and OpEx",
+    "difficulty": "hard",
+    "question": "A Cape Town manufacturer spent heavily upfront on servers and depreciates them over several years. It plans to move the workload to a public cloud service. Which statement most accurately describes the financial change?",
+    "options": [
+      "Costs disappear entirely, so no budgeting or monitoring is needed",
+      "Large upfront hardware spending is largely replaced by ongoing, usage-based spending, though costs still need monitoring",
+      "Spending moves from OpEx to CapEx because cloud contracts require buying hardware first",
+      "Spending stays the same every month because cloud prices ignore usage"
+    ],
+    "correctIndex": 1,
+    "explanation": "Moving to the cloud shifts spending from upfront capital expenditure toward operational expenditure that follows usage. Costs still need to be monitored and managed.",
+    "whyOthersWrong": [
+      "Cloud services are not free. Usage is billed, so budgeting and monitoring are still needed.",
+      null,
+      "The direction is reversed. Cloud use replaces upfront hardware purchases with ongoing operational spending.",
+      "Consumption-based pricing means costs usually change with usage."
+    ]
+  },
+  {
+    "id": "arch-001",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Regions",
+    "difficulty": "easy",
+    "question": "A Nairobi startup wants to deploy its app in a geographic area close to its Kenyan users to reduce delay. What does the team choose when creating its resources?",
+    "options": [
+      "A subscription",
+      "A region",
+      "A management group",
+      "A resource tag"
+    ],
+    "correctIndex": 1,
+    "explanation": "An Azure region is a geographic area that contains one or more datacenters. Choosing a region close to users can reduce latency.",
+    "whyOthersWrong": [
+      "A subscription is a billing and access boundary. It does not decide where resources are physically located.",
+      null,
+      "A management group organizes subscriptions for governance. It does not set a physical location.",
+      "A tag is a label used to organize and report on resources. It does not choose where they run."
+    ]
+  },
+  {
+    "id": "arch-002",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Availability zones",
+    "difficulty": "easy",
+    "question": "A Lagos fintech wants its app to keep running if one datacenter inside an Azure region has a power failure. Which Azure feature should it use?",
+    "options": [
+      "Resource groups",
+      "Region pairs",
+      "Availability zones",
+      "Resource tags"
+    ],
+    "correctIndex": 2,
+    "explanation": "Availability zones are physically separate locations within a region. Spreading an app across zones helps it stay available if one location fails.",
+    "whyOthersWrong": [
+      "Resource groups organize resources. They do not provide protection against a datacenter failure.",
+      "Region pairs help with recovery from a whole-region outage. The scenario describes one datacenter failing inside a region.",
+      null,
+      "Tags are labels for organizing and reporting. They do not provide resilience."
+    ]
+  },
+  {
+    "id": "arch-003",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Resource groups and subscriptions",
+    "difficulty": "easy",
+    "question": "A team in Kigali wants to put all resources for one project in a single logical container so they can manage them together and delete them when the project ends. What should they use?",
+    "options": [
+      "A region pair",
+      "An availability zone",
+      "A virtual network",
+      "A resource group"
+    ],
+    "correctIndex": 3,
+    "explanation": "A resource group is a logical container for related Azure resources. Deleting the group removes the resources inside it.",
+    "whyOthersWrong": [
+      "A region pair links two regions for recovery. It is not a container for managing project resources.",
+      "An availability zone is a physical location within a region. It does not group resources by project.",
+      "A virtual network is a private network. It is not a general-purpose container for managing resources.",
+      null
+    ]
+  },
+  {
+    "id": "arch-004",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Storage services",
+    "difficulty": "easy",
+    "question": "A Kigali school wants to store thousands of photos and videos and serve them to a website. Which Azure storage service is designed for large amounts of unstructured data like this?",
+    "options": [
+      "Azure Blob Storage",
+      "Azure Files",
+      "Azure Queue Storage",
+      "Azure DNS"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Blob Storage is built for large amounts of unstructured data, such as images, video and documents.",
+    "whyOthersWrong": [
+      null,
+      "Azure Files provides managed file shares. It is not the best fit for serving large amounts of media to a website.",
+      "Queue Storage holds messages for apps to process. It is not meant for storing photos and videos.",
+      "Azure DNS resolves domain names. It does not store files."
+    ]
+  },
+  {
+    "id": "arch-005",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Compute services",
+    "difficulty": "medium",
+    "question": "A Nairobi mobile money app needs a small piece of code that runs only when a payment event happens, without the team managing servers. Which Azure compute service fits best?",
+    "options": [
+      "Azure Virtual Machines",
+      "Azure App Service",
+      "Azure Kubernetes Service",
+      "Azure Functions"
+    ],
+    "correctIndex": 3,
+    "explanation": "Azure Functions is a serverless, event-driven service. Code runs in response to events, and the team does not manage the underlying servers.",
+    "whyOthersWrong": [
+      "With virtual machines the team must manage the operating system and servers itself.",
+      "App Service hosts web apps and APIs that run continuously. It is not the best match for small event-triggered code.",
+      "Azure Kubernetes Service orchestrates containers, which is more complex than this scenario needs.",
+      null
+    ]
+  },
+  {
+    "id": "arch-006",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Identity and access",
+    "difficulty": "medium",
+    "question": "A Lagos company wants to require extra verification only when staff sign in from untrusted locations. Which Microsoft Entra capability lets it set rules based on conditions such as location?",
+    "options": [
+      "Azure Policy",
+      "Conditional Access",
+      "Resource locks",
+      "Azure Advisor"
+    ],
+    "correctIndex": 1,
+    "explanation": "Conditional Access evaluates signals such as user location and applies rules, for example requiring multifactor authentication.",
+    "whyOthersWrong": [
+      "Azure Policy governs how Azure resources are configured. It does not control user sign-in.",
+      null,
+      "Resource locks prevent accidental changes or deletion of resources. They do not control sign-ins.",
+      "Azure Advisor gives recommendations about resources. It does not control sign-ins."
+    ]
+  },
+  {
+    "id": "arch-007",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Networking services",
+    "difficulty": "medium",
+    "question": "A Cape Town retailer wants a private connection between its office network and Azure that does not travel over the public internet. Which service should it use?",
+    "options": [
+      "Virtual network peering",
+      "Azure VPN Gateway",
+      "Azure ExpressRoute",
+      "Azure DNS"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure ExpressRoute provides a private connection through a connectivity provider. It does not use the public internet.",
+    "whyOthersWrong": [
+      "Virtual network peering connects virtual networks inside Azure. It does not link an office network to Azure.",
+      "VPN Gateway sends encrypted traffic over the public internet, so it is not a connection that avoids the internet.",
+      null,
+      "Azure DNS resolves domain names. It does not connect networks."
+    ]
+  },
+  {
+    "id": "arch-008",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Storage redundancy",
+    "difficulty": "medium",
+    "question": "A Lagos company wants its stored data copied to a secondary region far away so it can survive a disaster that affects the whole primary region. Which redundancy option fits best?",
+    "options": [
+      "Geo-redundant storage (GRS)",
+      "Locally redundant storage (LRS)",
+      "Zone-redundant storage (ZRS)",
+      "The hot access tier"
+    ],
+    "correctIndex": 0,
+    "explanation": "Geo-redundant storage replicates data to a secondary region, which helps protect against a regional disaster.",
+    "whyOthersWrong": [
+      null,
+      "LRS keeps copies within a single location in the primary region, so a regional disaster could affect all copies.",
+      "ZRS spreads copies across availability zones in one region. It does not copy data to a second region.",
+      "Access tiers relate to how often data is accessed and its cost. They are not a redundancy option."
+    ]
+  },
+  {
+    "id": "arch-009",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Management groups",
+    "difficulty": "hard",
+    "question": "A Kenyan company has 12 Azure subscriptions across departments. It wants to apply the same governance rules and access settings to all of them at once. What is the best approach?",
+    "options": [
+      "Apply the settings separately in each resource group",
+      "Place the subscriptions in a management group and apply the settings there",
+      "Apply resource tags to every subscription",
+      "Move all resources into one subscription first"
+    ],
+    "correctIndex": 1,
+    "explanation": "Management groups sit above subscriptions. Policies and access settings applied to a management group are inherited by the subscriptions inside it.",
+    "whyOthersWrong": [
+      "Setting rules resource group by resource group is slow and easy to get inconsistent across 12 subscriptions.",
+      null,
+      "Tags are labels for organizing and reporting. They do not enforce governance rules or grant access.",
+      "Moving everything into one subscription is unnecessary, and it removes the separation between departments."
+    ]
+  },
+  {
+    "id": "arch-010",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Identity and access",
+    "difficulty": "hard",
+    "question": "A junior admin at a Lagos company should be able to restart virtual machines in one resource group, but must not create new resources or change who has access. What is the best way to grant this?",
+    "options": [
+      "Add a read-only resource lock to the resource group",
+      "Require multifactor authentication for the admin's account",
+      "Assign an Azure role with only the needed permissions, scoped to that resource group",
+      "Apply an Azure Policy that blocks creating virtual machines"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure role-based access control (RBAC) grants permissions by assigning a role to a user at a scope. Limiting the role and the scope follows the principle of least privilege.",
+    "whyOthersWrong": [
+      "A lock applies to the resource for everyone. It does not give one person a specific set of permissions.",
+      "Multifactor authentication verifies who signs in. It does not define what the person can do.",
+      null,
+      "Policy controls what resource configurations are allowed. It does not grant a person permission to restart virtual machines."
+    ]
+  },
+  {
+    "id": "gov-001",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Tags",
+    "difficulty": "easy",
+    "question": "A finance team in Kampala wants to report cloud costs by department across many different resources. Which feature lets it label resources with department names?",
+    "options": [
+      "Resource locks",
+      "Azure Policy",
+      "Azure Service Health",
+      "Tags"
+    ],
+    "correctIndex": 3,
+    "explanation": "Tags are name-value labels added to resources. They help organize resources and group costs, for example by department.",
+    "whyOthersWrong": [
+      "Locks prevent accidental deletion or changes. They do not label resources.",
+      "Azure Policy can require tags, but the labels themselves are tags.",
+      "Service Health reports Azure service issues. It does not label resources.",
+      null
+    ]
+  },
+  {
+    "id": "gov-002",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Cost management tools",
+    "difficulty": "easy",
+    "question": "A Nairobi company wants to compare the cost of keeping its current on-premises servers with the cost of running the same workloads in Azure. Which tool is designed for this comparison?",
+    "options": [
+      "Pricing calculator",
+      "Total Cost of Ownership (TCO) calculator",
+      "Azure Advisor",
+      "Azure Service Health"
+    ],
+    "correctIndex": 1,
+    "explanation": "The TCO calculator compares the cost of running workloads on-premises with running them in Azure.",
+    "whyOthersWrong": [
+      "The pricing calculator estimates the cost of specific Azure services you plan to use. It does not compare against on-premises costs.",
+      null,
+      "Azure Advisor recommends improvements to existing Azure resources. It is not a cost comparison tool.",
+      "Service Health reports service issues. It does not compare costs."
+    ]
+  },
+  {
+    "id": "gov-003",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Resource locks",
+    "difficulty": "easy",
+    "question": "A Lagos company wants to stop anyone from accidentally deleting its production database, even people who have permission to manage it. What should it apply?",
+    "options": [
+      "A resource lock",
+      "Azure Policy",
+      "A resource tag",
+      "Azure Monitor"
+    ],
+    "correctIndex": 0,
+    "explanation": "A resource lock can prevent accidental deletion or modification of a resource, even by users who have permission to manage it.",
+    "whyOthersWrong": [
+      null,
+      "Azure Policy enforces rules about resource configuration. It is not the feature used to block deletion by authorized users.",
+      "A tag is only a label and does not prevent deletion.",
+      "Azure Monitor collects and analyzes telemetry. It does not prevent deletion."
+    ]
+  },
+  {
+    "id": "gov-004",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Management tools",
+    "difficulty": "easy",
+    "question": "A trainer in Kigali wants to run Azure CLI commands from a browser on a shared computer, without installing any software. What should the trainer use?",
+    "options": [
+      "A local installation of Azure PowerShell",
+      "Azure Arc",
+      "Azure Cloud Shell",
+      "Azure Advisor"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Cloud Shell is a browser-based shell for managing Azure resources, so nothing needs to be installed locally.",
+    "whyOthersWrong": [
+      "A local installation requires installing software, which the trainer wants to avoid.",
+      "Azure Arc extends Azure management to resources outside Azure. It is not a browser shell.",
+      null,
+      "Azure Advisor gives recommendations. It is not a command-line environment."
+    ]
+  },
+  {
+    "id": "gov-005",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Azure Policy",
+    "difficulty": "medium",
+    "question": "A Nairobi company wants to make sure every new storage account is created only in approved regions. Which Azure service can define and enforce this rule?",
+    "options": [
+      "Azure role-based access control (RBAC)",
+      "Azure Policy",
+      "Azure Monitor",
+      "Azure Advisor"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Policy lets you create, assign and enforce rules about resource configuration, such as allowed locations.",
+    "whyOthersWrong": [
+      "RBAC controls who can perform actions. It does not define which resource configurations are allowed.",
+      null,
+      "Azure Monitor collects and analyzes telemetry. It does not enforce configuration rules.",
+      "Azure Advisor offers recommendations but does not enforce rules."
+    ]
+  },
+  {
+    "id": "gov-006",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Monitoring and recommendations",
+    "difficulty": "medium",
+    "question": "A team wants personalized recommendations to improve the cost, security, reliability and performance of its existing Azure resources. Which service provides these?",
+    "options": [
+      "Azure Monitor",
+      "Azure Service Health",
+      "Azure Arc",
+      "Azure Advisor"
+    ],
+    "correctIndex": 3,
+    "explanation": "Azure Advisor analyzes your resources and gives personalized recommendations to improve cost, security, reliability and performance.",
+    "whyOthersWrong": [
+      "Azure Monitor collects and analyzes metrics and logs. It is not mainly a recommendation service.",
+      "Service Health informs you about Azure service issues that affect your resources. It does not recommend improvements.",
+      "Azure Arc extends Azure management to resources outside Azure.",
+      null
+    ]
+  },
+  {
+    "id": "gov-007",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Azure Arc",
+    "difficulty": "medium",
+    "question": "A Johannesburg company has servers in its own datacenter and in another cloud provider. It wants to manage and govern them from Azure. Which service helps?",
+    "options": [
+      "Azure Arc",
+      "Azure Cloud Shell",
+      "Azure DNS",
+      "Azure Advisor"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Arc extends Azure management and governance to resources running outside Azure, such as on-premises servers or other clouds.",
+    "whyOthersWrong": [
+      null,
+      "Cloud Shell is a browser-based command-line environment. It does not bring outside servers under Azure management.",
+      "Azure DNS hosts domain name records. It does not manage servers.",
+      "Azure Advisor recommends improvements for Azure resources and does not manage servers elsewhere."
+    ]
+  },
+  {
+    "id": "gov-008",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Azure Resource Manager",
+    "difficulty": "medium",
+    "question": "Whether an administrator uses the Azure portal, Azure CLI or Azure PowerShell, the requests are received and processed by a common management layer. What is it?",
+    "options": [
+      "Azure Arc",
+      "Azure Resource Manager (ARM)",
+      "Microsoft Purview",
+      "Azure Monitor"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Resource Manager is the deployment and management service for Azure. Requests from the portal, CLI, PowerShell and other tools all go through it.",
+    "whyOthersWrong": [
+      "Azure Arc extends management to resources outside Azure. It is not the common layer for Azure requests.",
+      null,
+      "Microsoft Purview is for data governance and compliance.",
+      "Azure Monitor collects and analyzes telemetry. It does not process management requests."
+    ]
+  },
+  {
+    "id": "gov-009",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Cost management tools",
+    "difficulty": "hard",
+    "question": "A Kigali company plans a new workload and wants to estimate its monthly cost before deploying. After deployment, it wants to set a budget and receive alerts as actual spending grows. Which pairing of tools matches these two needs?",
+    "options": [
+      "Cost Management for the estimate; Pricing calculator for budget alerts",
+      "TCO calculator for the estimate; Azure Advisor for budget alerts",
+      "Pricing calculator for the estimate; Microsoft Cost Management for budgets and alerts",
+      "Azure Monitor for the estimate; Azure Policy for budget alerts"
+    ],
+    "correctIndex": 2,
+    "explanation": "The pricing calculator estimates the cost of planned Azure services. Microsoft Cost Management tracks actual spending and lets you set budgets and alerts.",
+    "whyOthersWrong": [
+      "The tools are reversed. The pricing calculator is for estimates, and Cost Management is for tracking and budgeting actual spending.",
+      "The TCO calculator compares on-premises and Azure costs, and Advisor does not manage budgets.",
+      null,
+      "Azure Monitor and Azure Policy are not the tools for estimating costs or setting budget alerts."
+    ]
+  },
+  {
+    "id": "gov-010",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Microsoft Purview",
+    "difficulty": "hard",
+    "question": "A Nairobi healthcare group stores data in on-premises systems, several clouds and SaaS apps. It wants a unified view to discover, classify and govern that data. Which service is designed for this?",
+    "options": [
+      "Azure Policy",
+      "Azure Monitor",
+      "Azure Advisor",
+      "Microsoft Purview"
+    ],
+    "correctIndex": 3,
+    "explanation": "Microsoft Purview provides data governance and compliance tools that help you discover, classify and manage data across on-premises, multicloud and SaaS sources.",
+    "whyOthersWrong": [
+      "Azure Policy enforces rules on Azure resource configuration. It does not discover and classify data across environments.",
+      "Azure Monitor collects telemetry about resources and apps. It is not a data governance service.",
+      "Azure Advisor recommends improvements to Azure resources. It does not classify data.",
+      null
+    ]
+  }
+]
