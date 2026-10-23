@@ -116,7 +116,12 @@ export const MOCK_QUESTIONS = [
     difficulty: 'medium',
     question:
       'A team wants to evaluate whether Azure resources follow its organizational standards. Which service should it use?',
-    options: ['Azure Policy', 'Azure Virtual Network', 'Azure DNS', 'Azure Files'],
+    options: [
+      'Azure Policy',
+      'Azure Virtual Network',
+      'Azure DNS',
+      'Azure Files',
+    ],
     correctIndex: 0,
     explanation:
       'Azure Policy can evaluate resources against organizational rules and report compliance status.',
@@ -165,7 +170,11 @@ export function calculateScore(answers) {
 
   for (const answer of answers) {
     const { subtopic } = answer.question
-    const entry = bySubtopicMap.get(subtopic) ?? { subtopic, correct: 0, total: 0 }
+    const entry = bySubtopicMap.get(subtopic) ?? {
+      subtopic,
+      correct: 0,
+      total: 0,
+    }
     entry.total += 1
     if (answer.isCorrect) entry.correct += 1
     bySubtopicMap.set(subtopic, entry)

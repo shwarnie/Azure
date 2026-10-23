@@ -1,6 +1,6 @@
-function ErrorState({ message, onRetry }) {
+function ErrorState({ message, onRetry, onUseSample }) {
   return (
-    <main className="state-page">
+    <section className="state-page">
       <span className="state-icon state-icon-error" aria-hidden="true">
         !
       </span>
@@ -14,7 +14,16 @@ function ErrorState({ message, onRetry }) {
       <button className="button button-primary" type="button" onClick={onRetry}>
         Try again
       </button>
-    </main>
+      {onUseSample && (
+        <button
+          className="button button-secondary"
+          type="button"
+          onClick={onUseSample}
+        >
+          Preview with sample questions
+        </button>
+      )}
+    </section>
   )
 }
 

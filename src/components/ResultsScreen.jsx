@@ -1,9 +1,4 @@
-function ResultsScreen({
-  result,
-  onRetryMissed,
-  onTryAnotherTopic,
-  onHome,
-}) {
+function ResultsScreen({ result, onRetryMissed, onTryAnotherTopic, onHome }) {
   const { score, missedAnswers, topic } = result
 
   return (

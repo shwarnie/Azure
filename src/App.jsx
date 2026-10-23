@@ -7,6 +7,7 @@ import {
   getProgress,
   saveResult,
 } from './components/mocks/logicMock.js'
+import { MOCK_QUESTIONS } from './components/mocks/logicMock.js'
 import EmptyState from './components/EmptyState.jsx'
 import ErrorState from './components/ErrorState.jsx'
 import LoadingState from './components/LoadingState.jsx'
@@ -37,11 +38,10 @@ function isQuestionBank(value) {
         typeof question.explanation === 'string' &&
         Array.isArray(question.whyOthersWrong) &&
         question.whyOthersWrong.length === 4 &&
-        question.whyOthersWrong.every(
-          (reason, index) =>
-            index === question.correctIndex
-              ? reason === null
-              : typeof reason === 'string',
+        question.whyOthersWrong.every((reason, index) =>
+          index === question.correctIndex
+            ? reason === null
+            : typeof reason === 'string',
         ),
     )
   )
@@ -70,6 +70,16 @@ function App() {
       const response = await fetch('/data/questions.json')
       if (!response.ok) {
         throw new Error(`Question bank request failed (${response.status}).`)
+      }
+      if (
+        !response.headers
+          .get('content-type')
+          ?.toLowerCase()
+          .includes('application/json')
+      ) {
+        throw new Error(
+          'The question bank URL did not return JSON. Check that data/questions.json is served as a static file.',
+        )
       }
 
       const questionBank = await response.json()
@@ -180,36 +190,30 @@ function App() {
     setResult(null)
   }
 
-  if (loading) return <LoadingState />
-  if (loadError) {
-    return <ErrorState message={loadError} onRetry={loadQuestions} />
-  }
-  if (screen === 'empty' || !questions?.length) {
-    return (
-      <EmptyState
-        onHome={goHome}
-        message={
-          questions?.length
-            ? 'There are no questions for this selection yet.'
-            : 'The question bank is empty. Add questions to get started.'
-        }
-      />
-    )
+  const useSampleQuestions = () => {
+    setQuestions(MOCK_QUESTIONS)
+    setLoadError('')
+    setProgress(getProgress())
+    setScreen('home')
   }
 
   return (
     <div className="app-shell">
       <header className="site-header">
-        <a className="wordmark" href="/" onClick={(event) => {
-          event.preventDefault()
-          goHome()
-        }}>
+        <a
+          className="wordmark"
+          href="/"
+          onClick={(event) => {
+            event.preventDefault()
+            goHome()
+          }}
+        >
           <span className="wordmark-icon" aria-hidden="true">
             C
           </span>
           <span>CloudReady</span>
         </a>
-        {screen !== 'home' && (
+        {!loading && !loadError && screen !== 'home' && (
           <button className="text-button" type="button" onClick={goHome}>
             <span aria-hidden="true">←</span> Home
           </button>
@@ -217,39 +221,69 @@ function App() {
       </header>
 
       <main id="main-content" className="main-content">
-        {screen === 'home' && (
-          <TopicPicker
-            questions={questions}
-            progress={progress}
-            onSelectTopic={beginQuiz}
+        {loading && <LoadingState />}
+        {!loading && loadError && (
+          <ErrorState
+            message={loadError}
+            onRetry={loadQuestions}
+            onUseSample={import.meta.env.DEV ? useSampleQuestions : undefined}
           />
         )}
-        {screen === 'quiz' && (
-          <QuizScreen
-            question={quiz[currentIndex]}
-            questionNumber={currentIndex + 1}
-            totalQuestions={quiz.length}
-            feedback={feedback}
-            simpleExplanation={simpleExplanation}
-            explanationLoading={explanationLoading}
-            onAnswer={answerQuestion}
-            onNext={goToNextQuestion}
-            onExplain={requestSimplerExplanation}
-          />
-        )}
-        {screen === 'results' && result && (
-          <ResultsScreen
-            result={result}
-            onRetryMissed={() =>
-              beginQuiz(
-                result.topic,
-                result.missedAnswers.map((answer) => answer.question),
-              )
-            }
-            onTryAnotherTopic={goHome}
-            onHome={goHome}
-          />
-        )}
+        {!loading &&
+          !loadError &&
+          (screen === 'empty' || !questions?.length) && (
+            <EmptyState
+              onHome={goHome}
+              message={
+                questions?.length
+                  ? 'There are no questions for this selection yet.'
+                  : 'The question bank is empty. Add questions to get started.'
+              }
+            />
+          )}
+        {!loading &&
+          !loadError &&
+          questions?.length > 0 &&
+          screen === 'home' && (
+            <TopicPicker
+              questions={questions}
+              progress={progress}
+              onSelectTopic={beginQuiz}
+            />
+          )}
+        {!loading &&
+          !loadError &&
+          questions?.length > 0 &&
+          screen === 'quiz' && (
+            <QuizScreen
+              question={quiz[currentIndex]}
+              questionNumber={currentIndex + 1}
+              totalQuestions={quiz.length}
+              feedback={feedback}
+              simpleExplanation={simpleExplanation}
+              explanationLoading={explanationLoading}
+              onAnswer={answerQuestion}
+              onNext={goToNextQuestion}
+              onExplain={requestSimplerExplanation}
+            />
+          )}
+        {!loading &&
+          !loadError &&
+          questions?.length > 0 &&
+          screen === 'results' &&
+          result && (
+            <ResultsScreen
+              result={result}
+              onRetryMissed={() =>
+                beginQuiz(
+                  result.topic,
+                  result.missedAnswers.map((answer) => answer.question),
+                )
+              }
+              onTryAnotherTopic={goHome}
+              onHome={goHome}
+            />
+          )}
       </main>
 
       <footer className="site-footer">

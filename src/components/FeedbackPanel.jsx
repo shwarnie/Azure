@@ -62,7 +62,11 @@ function FeedbackPanel({
           loading={explanationLoading}
           explanationText={simpleExplanation}
         />
-        <button className="button button-primary" type="button" onClick={onNext}>
+        <button
+          className="button button-primary"
+          type="button"
+          onClick={onNext}
+        >
           {isLastQuestion ? 'See results' : 'Next'}
           <span aria-hidden="true">→</span>
         </button>

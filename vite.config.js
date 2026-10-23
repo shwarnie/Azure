@@ -27,6 +27,14 @@ function questionBankFile() {
           response.setHeader('Content-Type', 'application/json; charset=utf-8')
           response.end(contents)
         } catch (error) {
+          if (error.code === 'ENOENT') {
+            response.statusCode = 404
+            response.setHeader('Content-Type', 'application/json; charset=utf-8')
+            response.end(
+              JSON.stringify({ error: 'Question bank file was not found.' }),
+            )
+            return
+          }
           next(error)
         }
       })

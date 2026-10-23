@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import ExplainButton from './ExplainButton.jsx'
 import FeedbackPanel from './FeedbackPanel.jsx'
 
 function QuizScreen({
@@ -61,7 +60,9 @@ function QuizScreen({
       <div className="question-card">
         <div className="question-meta">
           <span className="topic-badge">{question.topic}</span>
-          <span className={`difficulty-badge difficulty-${question.difficulty}`}>
+          <span
+            className={`difficulty-badge difficulty-${question.difficulty}`}
+          >
             {question.difficulty}
           </span>
         </div>
