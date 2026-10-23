@@ -1,0 +1,128 @@
+[
+  {
+    "id": "cc-001",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Benefits of cloud computing",
+    "difficulty": "easy",
+    "question": "A small team needs to increase computing capacity for a short project without buying new servers. Which cloud benefit best fits this need?",
+    "options": [
+      "Scale resources to match demand",
+      "Own and maintain more physical servers",
+      "Move every application to one computer",
+      "Avoid monitoring resource use"
+    ],
+    "correctIndex": 0,
+    "explanation": "Cloud resources can be provisioned and adjusted as needs change, so the team can use additional capacity for the project without purchasing its own hardware.",
+    "whyOthersWrong": [
+      null,
+      "Buying and maintaining physical servers is the opposite of using on-demand cloud capacity.",
+      "Putting all applications on one computer does not provide flexible capacity.",
+      "Cloud resources still need to be monitored and managed."
+    ]
+  },
+  {
+    "id": "cc-002",
+    "topic": "Describe Cloud Concepts",
+    "subtopic": "Cloud service types",
+    "difficulty": "medium",
+    "question": "A developer wants to deploy application code while the cloud provider manages the underlying runtime and operating system. Which service type is the best fit?",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "On-premises hosting",
+      "Local storage"
+    ],
+    "correctIndex": 1,
+    "explanation": "Platform as a service provides a managed platform for deploying applications, reducing the amount of underlying infrastructure the developer must manage.",
+    "whyOthersWrong": [
+      "With infrastructure as a service, the customer manages more of the operating system and environment.",
+      null,
+      "On-premises hosting requires the organization to manage its own infrastructure.",
+      "Local storage is not a cloud application hosting service type."
+    ]
+  },
+  {
+    "id": "arch-001",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Azure physical infrastructure",
+    "difficulty": "easy",
+    "question": "Which statement best describes availability zones in an Azure region?",
+    "options": [
+      "They are separate physical locations with independent infrastructure.",
+      "They are billing categories for virtual machines.",
+      "They are user accounts shared between subscriptions.",
+      "They are names for Azure management tools."
+    ],
+    "correctIndex": 0,
+    "explanation": "Availability zones are physically separate locations within an Azure region, designed with independent power, cooling, and networking.",
+    "whyOthersWrong": [
+      null,
+      "A zone describes physical infrastructure, not a billing category.",
+      "Availability zones are not identities or user accounts.",
+      "They are part of Azure’s physical architecture, not management tools."
+    ]
+  },
+  {
+    "id": "arch-002",
+    "topic": "Describe Azure Architecture and Services",
+    "subtopic": "Azure resource management",
+    "difficulty": "medium",
+    "question": "Which Azure service provides a management layer for creating, updating, and deleting Azure resources?",
+    "options": [
+      "Azure Resource Manager",
+      "Microsoft Entra ID",
+      "Azure Monitor",
+      "Azure Cost Management"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Resource Manager is the deployment and management service for Azure, providing a consistent way to work with resources.",
+    "whyOthersWrong": [
+      null,
+      "Microsoft Entra ID manages identity and access rather than resource deployments.",
+      "Azure Monitor helps collect and analyze monitoring data.",
+      "Azure Cost Management helps analyze and manage cloud spending."
+    ]
+  },
+  {
+    "id": "gov-001",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Identity and access",
+    "difficulty": "easy",
+    "question": "An organization needs to manage identities and control access to Azure resources. Which service is designed for identity and access management?",
+    "options": [
+      "Microsoft Entra ID",
+      "Azure Policy",
+      "Azure Monitor",
+      "Azure Advisor"
+    ],
+    "correctIndex": 0,
+    "explanation": "Microsoft Entra ID is Microsoft’s cloud-based identity and access management service.",
+    "whyOthersWrong": [
+      null,
+      "Azure Policy helps create and enforce organizational standards for resources.",
+      "Azure Monitor collects and analyzes monitoring data.",
+      "Azure Advisor provides recommendations to help optimize Azure deployments."
+    ]
+  },
+  {
+    "id": "gov-002",
+    "topic": "Describe Azure Management and Governance",
+    "subtopic": "Governance and compliance",
+    "difficulty": "medium",
+    "question": "A team wants to evaluate whether Azure resources follow its organizational standards. Which service should it use?",
+    "options": [
+      "Azure Policy",
+      "Azure Virtual Network",
+      "Azure DNS",
+      "Azure Files"
+    ],
+    "correctIndex": 0,
+    "explanation": "Azure Policy can evaluate resources against organizational rules and report compliance status.",
+    "whyOthersWrong": [
+      null,
+      "Azure Virtual Network provides private networking for Azure resources.",
+      "Azure DNS hosts DNS domains and provides name resolution.",
+      "Azure Files provides managed file shares."
+    ]
+  }
+]
