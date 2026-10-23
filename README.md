@@ -1,106 +1,202 @@
-POWERLEARN PROJECT PRESENTS MICROSOFT AZURE HACKATHON
-# 💙 Azora — Smart AZ-900 Quiz Builder
+# Smart Quiz Builder for AZ-900
 
-**Practice smarter. Understand more.**
+**Pick a topic. Answer. Learn why, instantly.** A mobile-first practice tool for beginners preparing for the Azure Fundamentals exam.
 
-Azora is an interactive, AI-powered quiz builder designed to help learners prepare for the Microsoft Azure Fundamentals (AZ-900) exam through original practice questions, instant feedback, and beginner-friendly explanations.
+> **Unofficial AZ-900 practice tool. Not affiliated with or endorsed by Microsoft.**
 
-Built for the **Power Learn Project Africa — Vibe Coding Hackathon: AZ-900 Exam Prep Edition**.
+## Live demo
 
-## ✨ Features
+- **App:** [LIVE URL, e.g. https://your-app.vercel.app]
+- **Demo video / backup:** [VIDEO OR GIF LINK]
 
-- **Topic-Based Quizzes:** Practise cloud concepts, Azure architecture and services, and Azure management and governance.
-- **Customisable Practice:** Choose your preferred number of questions and difficulty level.
-- **Instant Feedback:** Find out whether your answer is correct and understand why.
-- **Explanations That Teach:** Learn from mistakes with clear, beginner-friendly explanations.
-- **Performance Tracking:** View your scores, review incorrect answers, and identify topics that need more practice.
-- **Responsive Design:** Enjoy a clean, accessible experience across desktop, tablet, and mobile.
-- **Pastel UI:** A fresh baby-blue-and-pink interface designed to make studying feel less intimidating.
+![Home screen](docs/img/home.png) <!-- [ADD SCREENSHOT] -->
+![Quiz feedback](docs/img/feedback.png) <!-- [ADD SCREENSHOT] -->
+![Demo GIF](docs/img/demo.gif) <!-- [ADD GIF] -->
 
-## 🎯 The Problem
+## Problem and solution
 
-Preparing for a cloud certification can feel overwhelming, especially for beginners encountering Azure concepts for the first time. Reading notes alone does not always reveal what a learner understands or where they need more practice.
+**Problem.** Many learners in Africa start cloud certification on a phone, on limited data, in a second language. Most practice tools only say "right" or "wrong", and "braindump" sites teach memorising instead of understanding.
 
-Azora turns revision into an interactive experience where learners can test their knowledge, receive immediate feedback, and use mistakes as opportunities to improve.
+**Solution.** A small web app that gives instant feedback with a plain explanation of why each answer is right or wrong. It shows results per topic so learners see their weak areas and can retry only what they missed. An optional "Explain it simpler" button uses the Claude API to rephrase an explanation in easier English.
 
-## 💡 Our Solution
+## Features
 
-Azora provides a focused practice environment that helps learners:
+- Three topics taken from the public AZ-900 skills outline
+- Instant feedback: why the correct answer is right and why the others are wrong
+- Results per topic and subtopic, with weak areas highlighted
+- "Retry missed questions" mode
+- Progress saved on the device (localStorage), no account needed
+- Works offline after first load (except the AI button)
+- "Explain it simpler" (Claude API) with a friendly fallback if it fails
+- Designed for 360px-wide phones and low bandwidth
 
-1. Select an AZ-900 topic.
-2. Configure a practice quiz.
-3. Answer original multiple-choice questions.
-4. Receive immediate feedback and explanations.
-5. Review results and identify knowledge gaps.
+## Architecture
 
-The goal is not just to help learners select the right answer, but to help them understand the concept behind it.
+```mermaid
+flowchart TD
+  L[Learner: phone or laptop] --> SPA[React + Vite SPA]
+  SPA -->|loads| Q[(data/questions.json - static, bundled)]
+  SPA <-->|saves and reads| LS[(localStorage - progress and missed IDs)]
+  SPA -->|POST /api/explain - only for Explain it simpler| FN[Serverless function: api/explain.js]
+  FN -->|reads ANTHROPIC_API_KEY from env| API[Claude API]
+  API -->|short explanation| FN
+  FN -->|JSON response| SPA
+```
 
-## 📚 Topics Covered
+**Data flow**
 
-| Topic | Focus |
-|---|---|
-| Cloud Concepts | Cloud computing, service types, and cloud models |
-| Azure Architecture and Services | Azure infrastructure, core services, and networking |
-| Azure Management and Governance | Cost management, compliance, security, and resource governance |
+1. The app loads `questions.json`; `buildQuiz()` filters and shuffles by topic.
+2. The learner answers; `checkAnswer()` returns correctness and the explanation.
+3. The quiz ends; `calculateScore()` runs and `saveResult()` writes to localStorage.
+4. Home and Results screens read `getProgress()` and `getMissedQuestionIds()`.
+5. "Explain it simpler" calls `explainSimpler()`, which sends `POST /api/explain`. The function validates the input, calls the Claude API and returns a short explanation. On any failure the UI shows a friendly message and the app keeps working.
 
-## 🛠️ Tech Stack
+**Design choices.** No database and no accounts keep the app fast, cheap and private. The API key exists only on the server. Each module has one job and a fixed function contract.
 
-- **AI-assisted development:** Lovable
-- **Frontend:** Add the actual framework and libraries used by your generated project
-- **Backend / AI integration:** Add the actual services configured in your project
-- **Database / persistence:** Add Supabase or your chosen storage solution if implemented
+## Tech stack and tools
 
-*The final technology stack should reflect the tools and integrations actually used in the project.*
+| Tool | Purpose | Who used it |
+|---|---|---|
+| React 18 + Vite (JavaScript) | Single-page app and build | [NAMES] |
+| [Plain CSS or Tailwind CSS: CHOOSE ONE] | Styling | [NAME] |
+| Vitest | Tests for logic functions | [NAME] |
+| ESLint + Prettier | Code quality | [NAMES] |
+| Node.js 20 LTS, npm | Runtime and packages | All |
+| Claude API (serverless function) | "Explain it simpler" feature | [NAME] |
+| Claude.ai | Prompt design, code generation, reviews, drafting | [NAMES] |
+| Cursor AI | AI-assisted editing and refactoring | [NAMES] |
+| Bolt.new / Lovable.dev | UI scaffolding (optional) | [NAME or "not used"] |
+| MGX | UI and design ideas (optional) | [NAME or "not used"] |
+| Git + GitHub | Branches, Pull Requests, Issues | All |
+| Vercel (primary), Netlify (backup) | Hosting and serverless functions | [NAME] |
+| Mermaid | Architecture diagram | [NAME] |
+| Canva | Pitch deck | [NAME] |
+| curl / Postman | Testing `/api/explain` | [NAMES] |
+| Lighthouse | Performance and accessibility checks | [NAME] |
+| Loom / OBS / phone recorder | Demo video and GIF | [NAME] |
 
-## 🚀 Getting Started
+## Getting started
 
-### Use Azora
+**Requirements:** Node.js 20 LTS and npm. For the AI feature locally, the [Vercel CLI](https://vercel.com/docs/cli) (`npm i -g vercel`).
 
-Add your deployed application URL here once it is available:
+```bash
+git clone [REPO URL]
+cd [REPO FOLDER]
+npm install
+cp .env.example .env      # then edit .env and add your own key
+```
 
-**Live Demo:** [Add your deployment link]
+`.env.example` (committed) contains only placeholders:
 
-### Run Locally
+```
+ANTHROPIC_API_KEY=your-key-here
+ANTHROPIC_MODEL=[MODEL ID FROM ANTHROPIC DOCS]
+```
 
-Once your Lovable project has been exported or connected to a GitHub repository:
+Never commit `.env`. It is listed in `.gitignore`.
 
-1. Clone the repository.
-2. Install the project's dependencies using the package manager specified in its configuration.
-3. Configure any required environment variables using the provided example environment file.
-4. Start the development server using the project's documented command.
+```bash
+npm run dev      # UI only. The AI button shows its fallback message.
+vercel dev       # UI plus /api/explain, with the AI button working
+npm test         # logic tests (Vitest)
+npm run build    # production build into dist/
+```
 
-Refer to the project's configuration and setup instructions for the exact commands.
+<!-- [CONFIRM script names match package.json] -->
 
-## 🧠 What Makes Azora Different?
+## Project structure
 
-Azora focuses on **learning through feedback**, not just scoring. By explaining answers and highlighting areas for improvement, it helps learners turn practice attempts into a more meaningful revision process.
+```
+data/questions.json     Question bank (content lead)
+src/components/         React UI (UI developer)
+src/logic/              Quiz, scoring, storage, AI client (logic developer)
+api/explain.js          Serverless function for the Claude API
+docs/                   Diagrams, deployment guide, pitch, prompt log
+README.md, vercel.json  Docs lead
+.env.example            Environment variable template (no real values)
+```
 
-The project also explores how AI-assisted and low-code development tools can help turn a real learning challenge into a practical educational application.
+## Content approach
 
-## 🗺️ Future Improvements
+- Every question is **original**. We do not use, recall or imitate real exam or "braindump" questions.
+- Topics follow the public AZ-900 skills outline on Microsoft Learn: [LINK TO SKILLS OUTLINE, verify URL].
+- Topic names used in the app: "Describe Cloud Concepts", "Describe Azure Architecture and Services", "Describe Azure Management and Governance".
+- Each question has a short explanation and a reason each wrong option is wrong.
+- Azure facts can change. Learners should confirm details on Microsoft Learn. [OPTIONAL: say who reviewed the content and when.]
+- No Microsoft logos or branding are used.
 
-Potential additions include:
+## Prompt Engineering
 
-- Flashcards generated from study notes.
-- AI-generated quizzes based on learner-provided material.
-- Personalised revision recommendations.
-- Audio summaries and visual concept explainers.
-- More detailed progress analytics.
+### Master Prompt (summary)
 
-These are future possibilities and are not necessarily part of the current MVP.
+One shared "Master Prompt" gave every role the same context: product goal, target users, six non-negotiable rules (original questions, disclaimer, exact topic strings, accuracy over creativity, no secrets in code, simple stack), the architecture, the shared data contract, the shared function contract, file ownership and the git workflow. It also fixed the response format (plan first, copy-paste-ready output, one-sentence rationale, closing checklist). Each member then added a role prompt on top.
 
-## ⚠️ Disclaimer
+### Prompts by role
 
-Azora is an independent, unofficial educational project created for the Power Learn Project Africa Vibe Coding Hackathon. It is not affiliated with, endorsed by, or sponsored by Microsoft.
+| Role | Prompt goal | Key constraints | Tools used |
+|---|---|---|---|
+| Content lead | [e.g. Generate original questions per topic and subtopic] | Data contract field names, original questions, exact topic strings, flag uncertain facts | [CONFIRM] |
+| UI developer | [e.g. Build mobile-first quiz screens] | 360px, low bandwidth, simple English, disclaimer visible, no Microsoft branding | [CONFIRM] |
+| Logic and AI developer | [e.g. Implement the function contract and `/api/explain`] | Exact function names, key only in env vars, validated input, graceful failure | [CONFIRM] |
+| Docs, deployment and pitch lead | README, deployment guide, PR checklist, pitch deck | Markdown, placeholders in [BRACKETS], no buzzwords, pitch criteria weights | Claude.ai, Mermaid, Canva |
 
-All practice questions are original learning materials and are not actual Microsoft certification exam questions.
+### The AI feature prompt
 
-## 👩🏽‍💻 Built For
+System prompt sent by `api/explain.js` (final text: [CONFIRM with logic developer]):
 
-**Power Learn Project Africa — 1 Million Devs Vibe Coding Hackathon: AZ-900 Exam Prep Edition**
+```
+You are a patient AZ-900 tutor for beginners whose first language may not be English.
+Explain in simple English, in at most 80 words, using short sentences.
+Use ONLY the question, options and explanation provided. Do not add new Azure facts,
+service names, limits or prices. If the learner chose a wrong answer, say briefly why it
+is tempting and why it is not correct. Define any technical word the first time you use it.
+End with: "Check the details on Microsoft Learn." Reply in plain text only.
+```
 
-*Building smarter exam prep tools from our own learning journey.*
+**Design notes**
 
----
+- **Grounded:** the model rewords our reviewed explanation instead of answering from memory, which reduces invented facts.
+- **Server-side key:** the browser never sees `ANTHROPIC_API_KEY`.
+- **Validated input:** the function accepts POST only, requires 4 options, indexes 0-3 and limited text lengths, and sets a small `max_tokens`.
+- **No tools or memory:** the model only returns plain text.
+- **Graceful failure:** a timeout or error returns `{ "error": "..." }` and the UI shows a friendly message.
+- **Optional by design:** the quiz works without the AI feature.
+- **Known limit:** the endpoint is public, so rate limiting is on the roadmap.
 
-**Azora — Your cloud learning journey, one question at a time.** 💙🩷
+### Prompt iteration log
+
+| # | Date | Role | Prompt change | Why | Result |
+|---|---|---|---|---|---|
+| 1 | 23/10/2026 | All | Master Prompt v1: rules, architecture and contracts in one shared context | Keep the whole team consistent | [RESULT] |
+| 2 | [DATE] | [ROLE] | [WHAT CHANGED] | [REASON] | [RESULT] |
+| 3 | [DATE] | [ROLE] | [WHAT CHANGED] | [REASON] | [RESULT] |
+
+## Team
+
+| Role | Member | Branch | Owns |
+|---|---|---|---|
+| Content lead | [NAME] | `feature/question-bank` | `data/questions.json` |
+| UI developer | [NAME] | `feature/quiz-ui` | `src/components/`, Vite scaffold |
+| Logic and AI developer | [NAME] | `feature/scoring-ai` | `src/logic/`, `api/explain.js` |
+| Docs, deployment and pitch | Joshua Mukisa [CONFIRM full name] | `feature/docs-deploy` | `README.md`, `vercel.json`, `docs/` |
+
+## Roadmap and scalability
+
+- **Next:** more questions per subtopic, a review pass by a certified person [OPTIONAL].
+- **Learning:** spaced repetition using the stored missed-question IDs.
+- **Reach:** local-language explanations, starting with [LANGUAGE].
+- **More certifications:** AI-900, AZ-104 and others, reusing the same data contract.
+- **Community:** a leaderboard.
+- **Accounts:** Supabase for sign-in and cross-device progress (stretch goal, not in the MVP).
+- **Scale:** the app is static files plus one function, so hosting cost stays low as users grow. Rate limiting on `/api/explain` comes first.
+
+## Contributing and licence
+
+1. Branch from `main` (`feature/your-change`).
+2. Edit only your own area. Commit small, e.g. `feat(logic): add calculateScore`.
+3. Run `git pull origin main`, then `npm run build` and `npm test`.
+4. Open a Pull Request into `main`.
+
+New questions must be original and follow the data contract.
+
+Licence: [LICENCE, e.g. MIT, confirm with team]. AZ-900 and Azure are trademarks of Microsoft. This project is not affiliated with or endorsed by Microsoft.
