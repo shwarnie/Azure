@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="azora" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BDE0FE" />
+      <stop offset="1" stop-color="#FFC8DD" />
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="13" fill="url(#azora)" />
+  <path
+    d="M20 5.5 33 13v14L20 34.5 7 27V13l13-7.5Z"
+    fill="none"
+    stroke="#315F89"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2.2"
+  />
+  <path
+    d="m13.5 20 4.5 4.5 9-10"
+    fill="none"
+    stroke="#315F89"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2.8"
+  />
+</svg>
