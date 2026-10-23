@@ -13,9 +13,15 @@ import ErrorState from './components/ErrorState.jsx'
 import LoadingState from './components/LoadingState.jsx'
 import QuizScreen from './components/QuizScreen.jsx'
 import ResultsScreen from './components/ResultsScreen.jsx'
+import SiteFooter from './components/SiteFooter.jsx'
 import TopicPicker from './components/TopicPicker.jsx'
 
 const QUESTION_COUNT = 10
+const THEME_KEY = 'azora-theme'
+
+function getInitialTheme() {
+  return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'
+}
 
 function isQuestionBank(value) {
   return (
@@ -60,6 +66,11 @@ function App() {
   const [result, setResult] = useState(null)
   const [simpleExplanation, setSimpleExplanation] = useState('')
   const [explanationLoading, setExplanationLoading] = useState(false)
+  const [theme, setTheme] = useState(getInitialTheme)
+
+  useEffect(() => {
+    localStorage.setItem(THEME_KEY, theme)
+  }, [theme])
 
   const loadQuestions = useCallback(async () => {
     setLoading(true)
@@ -197,7 +208,7 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={theme}>
       <header className="site-header">
         <a
           className="wordmark"
@@ -231,13 +242,28 @@ function App() {
             <span aria-hidden="true">←</span> Dashboard
           </button>
         )}
+        <button
+          className="theme-toggle"
+          type="button"
+          onClick={() =>
+            setTheme((currentTheme) =>
+              currentTheme === 'dark' ? 'light' : 'dark',
+            )
+          }
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          aria-pressed={theme === 'dark'}
+        >
+          <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+          <span className="theme-toggle-label">
+            {theme === 'dark' ? 'Light' : 'Dark'}
+          </span>
+        </button>
       </header>
 
       <main id="main-content" className="main-content">
         {loading && <LoadingState />}
         {!loading && loadError && (
           <ErrorState
-            message={loadError}
             onRetry={loadQuestions}
             onUseSample={import.meta.env.DEV ? useSampleQuestions : undefined}
           />
@@ -299,10 +325,7 @@ function App() {
           )}
       </main>
 
-      <footer className="site-footer">
-        Unofficial AZ-900 practice tool. Not affiliated with or endorsed by
-        Microsoft.
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

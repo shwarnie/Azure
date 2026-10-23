@@ -1,16 +1,12 @@
-function ErrorState({ message, onRetry, onUseSample }) {
+function ErrorState({ onRetry, onUseSample }) {
   return (
     <section className="state-page">
       <span className="state-icon state-icon-error" aria-hidden="true">
         !
       </span>
-      <p className="eyebrow">We hit a snag</p>
-      <h1>Questions couldn’t load.</h1>
-      <p>
-        Check that <code>data/questions.json</code> exists and follows the
-        question format, then try again.
-      </p>
-      <p className="state-detail">{message}</p>
+      <p className="eyebrow">A quick pause</p>
+      <h1>Your practice is taking a moment.</h1>
+      <p>We couldn’t load the questions just now. Please try again shortly.</p>
       <button className="button button-primary" type="button" onClick={onRetry}>
         Try again
       </button>
@@ -20,7 +16,7 @@ function ErrorState({ message, onRetry, onUseSample }) {
           type="button"
           onClick={onUseSample}
         >
-          Preview with sample questions
+          Try a sample quiz
         </button>
       )}
     </section>

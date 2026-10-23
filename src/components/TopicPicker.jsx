@@ -9,18 +9,24 @@ function TopicPicker({ questions, progress, onSelectTopic }) {
     questions.filter((question) => question.topic === topic).length
 
   const allCount = questions.length
-  const progressEntries = Object.values(progress ?? {})
-  const sessionsCompleted = progressEntries.reduce(
-    (total, entry) => total + (Number(entry.total) > 0 ? 1 : 0),
-    0,
+  const availableTopics = TOPICS.filter((topic) => getCount(topic) > 0)
+  const practicedTopics = TOPICS.filter(
+    (topic) => typeof progress?.[topic]?.bestPercentage === 'number',
   )
-  const practicedTopics = progressEntries.filter(
-    (entry) => typeof entry.bestPercentage === 'number',
+  const topicsExplored = practicedTopics.length
+  const topicProgress = Math.round((topicsExplored / TOPICS.length) * 100)
+  const perfectRounds = TOPICS.some(
+    (topic) => progress?.[topic]?.bestPercentage === 100,
   )
+  const recommendedTopic = [...availableTopics].sort((first, second) => {
+    const firstScore = progress?.[first]?.bestPercentage ?? -1
+    const secondScore = progress?.[second]?.bestPercentage ?? -1
+    return firstScore - secondScore
+  })[0]
   const averageBest = practicedTopics.length
     ? Math.round(
         practicedTopics.reduce(
-          (total, entry) => total + entry.bestPercentage,
+          (total, topic) => total + progress[topic].bestPercentage,
           0,
         ) / practicedTopics.length,
       )
@@ -136,9 +142,13 @@ function TopicPicker({ questions, progress, onSelectTopic }) {
               <span>Learning snapshot</span>
             </div>
             <div className="preview-score-row">
-              <strong>{averageBest ? `${averageBest}%` : 'Your pace'}</strong>
+              <strong>
+                {practicedTopics.length ? `${averageBest}%` : '0%'}
+              </strong>
               <span>
-                {averageBest ? 'best topic score' : 'Start when you’re ready'}
+                {practicedTopics.length
+                  ? 'average best score'
+                  : 'your first score is waiting'}
               </span>
             </div>
             <div
@@ -147,29 +157,45 @@ function TopicPicker({ questions, progress, onSelectTopic }) {
               aria-label="Average best score across practiced topics"
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-valuenow={averageBest}
+              aria-valuenow={practicedTopics.length ? averageBest : 0}
             >
-              <span style={{ width: `${averageBest}%` }} />
+              <span
+                style={{
+                  width: `${practicedTopics.length ? averageBest : 0}%`,
+                }}
+              />
             </div>
           </div>
 
-          <div className="preview-card preview-recommendation">
+          <button
+            className="preview-card preview-recommendation"
+            type="button"
+            onClick={() => recommendedTopic && onSelectTopic(recommendedTopic)}
+            disabled={!recommendedTopic}
+            aria-label={
+              recommendedTopic
+                ? `Start suggested topic: ${recommendedTopic}`
+                : 'No topics are available yet'
+            }
+          >
             <span className="preview-icon preview-icon-pink" aria-hidden="true">
               ✧
             </span>
             <span>
-              <strong>Up next</strong>
-              <small>Explore a topic at your pace</small>
+              <strong>
+                {recommendedTopic ? 'Your next quest' : 'Up next'}
+              </strong>
+              <small>
+                {recommendedTopic ?? 'Add questions to begin your journey'}
+              </small>
             </span>
             <span className="preview-arrow" aria-hidden="true">
-              ↗
+              {recommendedTopic ? '↗' : '·'}
             </span>
-          </div>
+          </button>
           <div className="preview-progress-chip">
             <span className="progress-dot" aria-hidden="true" />
-            {sessionsCompleted
-              ? `${sessionsCompleted} topic${sessionsCompleted === 1 ? '' : 's'} explored`
-              : 'Your learning journey starts here'}
+            {topicsExplored} / {TOPICS.length} topics explored
           </div>
         </div>
       </section>
@@ -184,30 +210,122 @@ function TopicPicker({ questions, progress, onSelectTopic }) {
           </span>
           <div>
             <p className="dashboard-kicker">
-              {sessionsCompleted ? 'Welcome back' : 'A lovely place to begin'}
+              {topicsExplored ? 'Welcome back, learner' : 'Quest board'}
             </p>
             <h2>
-              {sessionsCompleted
-                ? 'Your progress is taking shape.'
-                : 'Ready when you are.'}
+              {topicsExplored
+                ? `${topicsExplored} topic${topicsExplored === 1 ? '' : 's'} explored!`
+                : 'Your cloud adventure starts here.'}
             </h2>
             <p>
-              {sessionsCompleted
-                ? 'Pick up with a topic or explore something new.'
-                : 'Choose a short topic quiz to take your first step.'}
+              {topicsExplored
+                ? 'Keep going to unlock your next achievement.'
+                : 'Complete a topic quiz to unlock your first badge.'}
             </p>
           </div>
         </div>
         <div className="dashboard-stat">
-          <span className="stat-value">{sessionsCompleted}</span>
-          <span className="stat-label">topics explored</span>
-        </div>
-        <div className="dashboard-stat dashboard-stat-pink">
           <span className="stat-value">
-            {practicedTopics.length ? `${averageBest}%` : '—'}
+            {topicsExplored}
+            <span className="stat-total">/{TOPICS.length}</span>
           </span>
-          <span className="stat-label">average best</span>
+          <span className="stat-label">topics explored</span>
+          <div
+            className="dashboard-progress"
+            role="progressbar"
+            aria-label="Topic exploration progress"
+            aria-valuemin={0}
+            aria-valuemax={TOPICS.length}
+            aria-valuenow={topicsExplored}
+          >
+            <span style={{ width: `${topicProgress}%` }} />
+          </div>
         </div>
+      </section>
+
+      <section
+        className="quest-board"
+        aria-label="Daily quest and achievements"
+      >
+        <article className="daily-quest-card">
+          <span className="quest-ribbon">TODAY’S QUEST</span>
+          <span className="quest-mascot" aria-hidden="true">
+            ✦
+          </span>
+          <div className="quest-copy">
+            <h2>Take a quick cloud quest</h2>
+            <p>
+              {recommendedTopic
+                ? `Practise ${Math.min(10, getCount(recommendedTopic))} ${
+                    Math.min(10, getCount(recommendedTopic)) === 1
+                      ? 'question'
+                      : 'questions'
+                  } in ${recommendedTopic}.`
+                : 'A new topic quiz will be ready when questions are added.'}
+            </p>
+          </div>
+          <button
+            className="button button-primary quest-button"
+            type="button"
+            onClick={() => recommendedTopic && onSelectTopic(recommendedTopic)}
+            disabled={!recommendedTopic}
+          >
+            {recommendedTopic ? 'Start quest' : 'All explored'}
+            <span aria-hidden="true">{recommendedTopic ? '→' : '✓'}</span>
+          </button>
+        </article>
+
+        <article className="achievement-card">
+          <div className="achievement-heading">
+            <div>
+              <p className="eyebrow">Little wins add up</p>
+              <h2>Your badges</h2>
+            </div>
+            <span className="badge-count">
+              {Number(topicsExplored > 0) +
+                Number(topicsExplored === TOPICS.length) +
+                Number(perfectRounds)}{' '}
+              / 3
+            </span>
+          </div>
+          <div className="badge-list">
+            <div
+              className={`achievement-badge ${topicsExplored > 0 ? 'is-unlocked' : ''}`}
+              aria-label={
+                topicsExplored > 0
+                  ? 'First Steps badge unlocked'
+                  : 'First Steps badge locked'
+              }
+            >
+              <span aria-hidden="true">{topicsExplored > 0 ? '✓' : '·'}</span>
+              <small>First steps</small>
+            </div>
+            <div
+              className={`achievement-badge ${topicsExplored === TOPICS.length ? 'is-unlocked' : ''}`}
+              aria-label={
+                topicsExplored === TOPICS.length
+                  ? 'Cloud Explorer badge unlocked'
+                  : 'Cloud Explorer badge locked'
+              }
+            >
+              <span aria-hidden="true">
+                {topicsExplored === TOPICS.length ? '✦' : '·'}
+              </span>
+              <small>Cloud explorer</small>
+            </div>
+            <div
+              className={`achievement-badge ${perfectRounds ? 'is-unlocked' : ''}`}
+              aria-label={
+                perfectRounds
+                  ? 'Perfect Round badge unlocked'
+                  : 'Perfect Round badge locked'
+              }
+            >
+              <span aria-hidden="true">{perfectRounds ? '★' : '·'}</span>
+              <small>Perfect round</small>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section
@@ -253,6 +371,18 @@ function TopicPicker({ questions, progress, onSelectTopic }) {
                     <span className="best-score">Best {bestScore}%</span>
                   )}
                 </span>
+                {typeof bestScore === 'number' && (
+                  <span
+                    className="topic-mastery"
+                    role="progressbar"
+                    aria-label={`${topic} best score`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={bestScore}
+                  >
+                    <span style={{ width: `${bestScore}%` }} />
+                  </span>
+                )}
               </button>
             )
           })}
